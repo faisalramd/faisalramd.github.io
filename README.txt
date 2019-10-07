@@ -19,8 +19,7 @@ aj@lkn.io | @ajlkn
 
 PS: Not sure how to get that contact form working? Give formspree.io a try (it's awesome).
 
-
-Credits: (Ramdani)
+Credits: (Ramdani) (Faisal)
 
 	Demo Images:
 		Unsplash (unsplash.com)
