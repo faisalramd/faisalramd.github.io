@@ -11,13 +11,15 @@
   
 <script>
   var x = 0.0;
-  var y = 0.5;
+  var y = 0.0; 
   var z = 0.0;
 function myFunction() {
-  x += 0.1
+  x += 0.05;
+  y += 0.03;
+  z += 0.01;
   document.getElementById("part1").style.opacity = x;
-  document.getElementById("part2").style.opacity += '0.1';
-  document.getElementById("part3").style.opacity += '0.1';
+  document.getElementById("part2").style.opacity = y;
+  document.getElementById("part3").style.opacity = z;
 }
 </script>
 
