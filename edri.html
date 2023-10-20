@@ -7,7 +7,7 @@
 
   <img id="part1" style = "opacity: 0.0; width:100%" src="/images/Untitled7_20231021032711.png"/>
   <img id="part2" style = "opacity: 0.0; width:100%; margin-top: -2500px;" src="/images/Untitled7_20231021031608.png"/>
-  <img id="part3" onclick="myFunction()" style = "opacity: 0.0; width:100%; margin-top: -2500px;" src="/images/Untitled7_20231021032727.png"/>
+  <img id="part3" ondblclick="myFunction()" onclick="myFunction()" style = "opacity: 0.0; width:100%; margin-top: -2500px;" src="/images/Untitled7_20231021032727.png"/>
   
 <script>
   var x = 0.0;
@@ -15,8 +15,8 @@
   var z = 0.0;
 function myFunction() {
   x += 0.05;
-  y += 0.005;
-  z += 0.005;
+  y += 0.01;
+  z += 0.01;
   document.getElementById("part1").style.opacity = x;
   document.getElementById("part2").style.opacity = y;
   document.getElementById("part3").style.opacity = z;
