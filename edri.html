@@ -5,15 +5,18 @@
 </head>
 <body>
 
-  <button onclick="myFunction()">Refresh</button>
-
-  <img style = "width:100%" src="/images/Untitled7_20231021032711.png"/>
-  <img style = "width:100%; margin-top: -2500px;" src="/images/Untitled7_20231021031608.png"/>
-  <img style = "width:100%; margin-top: -2500px;" src="/images/Untitled7_20231021032727.png"/>
+  <img id="part1" style = "opacity: 0.0; width:100%" src="/images/Untitled7_20231021032711.png"/>
+  <img id="part2" style = "opacity: 0.0; width:100%; margin-top: -2500px;" src="/images/Untitled7_20231021031608.png"/>
+  <img id="part3" onclick="myFunction()" style = "opacity: 0.0; width:100%; margin-top: -2500px;" src="/images/Untitled7_20231021032727.png"/>
   
 <script>
+  let x = 0.0;
+  let y = 0.5;
+  let z = 0.0;
 function myFunction() {
-  document.getElementById("myDIV").style.opacity = "0.5";
+  document.getElementById("part1").style.opacity = x;
+  document.getElementById("part2").style.opacity = y;
+  document.getElementById("part3").style.opacity = z;
 }
 </script>
 
