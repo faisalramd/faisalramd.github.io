@@ -1,3 +1,12 @@
+// Roboto is the Material type family. Sass hoists plain CSS imports to the
+// top of the compiled stylesheet, so declaring it here is equivalent to
+// declaring it in the entry point.
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Roboto+Mono:wght@400&display=swap");
+
+// Design tokens — Material Design 3 (Google)
+// Colour roles follow the M3 scheme, keyed to Google's product palette
+// (M3 blue primary, Grey 900/700 on-surface, Grey 300 outline).
+
 // Misc.
 	$misc: (
 		z-index-base:		10000,
@@ -5,60 +14,93 @@
 	);
 
 // Duration.
+// M3 motion: short4 = 200ms, medium2 = 300ms, long2 = 500ms.
 	$duration: (
 		header:				0.5s,
 		transition:			0.2s
 	);
 
 // Size.
+// M3 shape scale: xs 4px, sm 8px, md 12px, lg 16px, xl 28px.
 	$size: (
-		border-radius:		5px,
-		border-width:		2px,
-		element-height:		2.75em,
+		border-radius:		12px,
+		border-width:		1px,
+		element-height:		3.5em,
 		element-margin:		2.25em,
 		container-width:	45em
 	);
 
+// Shape.
+	$shape: (
+		none:				0,
+		xsmall:				4px,
+		small:				8px,
+		medium:				12px,
+		large:				16px,
+		xlarge:				28px,
+		full:				999px
+	);
+
 // Font.
+// Roboto is the Material type family.
 	$font: (
-		family:				('Lato', sans-serif),
-		family-fixed:		('Source Code Pro', monospace),
+		family:				('Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif),
+		family-fixed:		('Roboto Mono', 'SF Mono', Menlo, monospace),
 		weight:				400,
+		weight-medium:		500,
 		weight-bold:		700
 	);
 
 // Palette.
 	$palette: (
-		bg:					#fff,
-		fg:					#888,
-		fg-bold:			#777,
-		fg-light:			#aaa,
-		border:				#f4f4f4,
-		border-bg:			#fafafa,
-		border2:			#e4e4e4,
-		border2-bg:			#f4f4f4,
-		border3:			#e0e0e0,
-		border3-bg:			#eaeaea,
+		bg:					#ffffff,	// surface
+		fg:					#3c4043,	// on-surface (body)
+		fg-bold:			#202124,	// on-surface (emphasis)
+		fg-light:			#5f6368,	// on-surface-variant (muted) — 6.05:1 on surface
+		border:				#e8eaed,	// outline-variant
+		border-bg:			#f8f9fa,	// surface-container-low
+		border2:			#dadce0,	// outline
+		border2-bg:			#f1f3f4,	// surface-container
+		border3:			#bdc1c6,
+		border3-bg:			#e8eaed,	// surface-container-high
 
+		// Primary — Google's M3 primary blue. 6.39:1 against white, which
+		// leaves headroom for tinted text that Blue 600 (#1a73e8, 4.51:1)
+		// does not.
 		accent1: (
-			bg:				#4acaa8,
+			bg:				#0b57d0,
 			fg-bold:		#ffffff,
-			fg:				mix(#4acaa8, #ffffff, 25%),
-			fg-light:		mix(#4acaa8, #ffffff, 40%)
+			fg:				mix(#0b57d0, #ffffff, 25%),
+			fg-light:		mix(#0b57d0, #ffffff, 40%),
+			container:		#d3e3fd,	// primary-container
+			on-container:	#041e49		// on-primary-container
 		),
 
+		// Secondary — Google Grey 700.
 		accent2: (
-			bg:				#989898,
+			bg:				#5f6368,
 			fg-bold:		#ffffff,
-			fg:				mix(#989898, #ffffff, 25%),
-			fg-light:		mix(#989898, #ffffff, 40%)
+			fg:				mix(#5f6368, #ffffff, 25%),
+			fg-light:		mix(#5f6368, #ffffff, 40%),
+			container:		#e8eaed,
+			on-container:	#202124
 		),
 
+		// Navigation drawer — primary surface. Tints stay under 20% so every
+		// text role clears 4.5:1 against the drawer background.
 		header: (
-			bg:				#4acaa8,
+			bg:				#0b57d0,
 			fg-bold:		#ffffff,
-			fg:				mix(#4acaa8, #ffffff, 25%),
-			fg-light:		mix(#4acaa8, #ffffff, 40%),
-			border:			mix(#4acaa8, #ffffff, 90%)
+			fg:				mix(#0b57d0, #ffffff, 10%),
+			fg-light:		mix(#0b57d0, #ffffff, 20%),
+			border:			mix(#0b57d0, #ffffff, 85%)
 		)
+	);
+
+// Extended Google product accents.
+	$google: (
+		blue:				#1a73e8,
+		red:				#d93025,
+		yellow:				#f9ab00,
+		green:				#1e8e3e
 	);

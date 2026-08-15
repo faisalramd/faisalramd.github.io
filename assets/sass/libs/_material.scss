@@ -1,0 +1,630 @@
+///
+/// Material Design 3 layer.
+///
+/// Applied on top of the base template styles. Implements Google's Material
+/// system: the M3 type scale, shape scale, elevation levels, state layers and
+/// motion easing, mapped onto the existing markup.
+///
+
+// Tokens ---------------------------------------------------------------------
+
+	:root {
+		// Colour roles.
+		--md-primary:				#{_palette(accent1, bg)};
+		--md-on-primary:			#{_palette(accent1, fg-bold)};
+		--md-primary-container:		#{_palette(accent1, container)};
+		--md-on-primary-container:	#{_palette(accent1, on-container)};
+		--md-secondary:				#{_palette(accent2, bg)};
+		--md-secondary-container:	#{_palette(accent2, container)};
+		--md-on-secondary-container:#{_palette(accent2, on-container)};
+		--md-surface:				#{_palette(bg)};
+		--md-surface-low:			#{_palette(border-bg)};
+		--md-surface-container:		#{_palette(border2-bg)};
+		--md-surface-high:			#{_palette(border3-bg)};
+		--md-on-surface:			#{_palette(fg-bold)};
+		--md-on-surface-variant:	#{_palette(fg-light)};
+		--md-outline:				#{_palette(border2)};
+		--md-outline-variant:		#{_palette(border)};
+		--md-error:					#{_google(red)};
+
+		// Motion — M3 easing and duration tokens.
+		--md-ease:					cubic-bezier(0.2, 0, 0, 1);
+		--md-ease-emphasized:		cubic-bezier(0.05, 0.7, 0.1, 1);
+		--md-dur-short:				150ms;
+		--md-dur-medium:			250ms;
+		--md-dur-long:				400ms;
+
+		// Elevation — Google's five-level shadow scale.
+		--md-elev-0:	none;
+		--md-elev-1:	0 1px 2px 0 rgba(60, 64, 67, 0.30), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+		--md-elev-2:	0 1px 2px 0 rgba(60, 64, 67, 0.30), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+		--md-elev-3:	0 1px 3px 0 rgba(60, 64, 67, 0.30), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+		--md-elev-4:	0 2px 3px 0 rgba(60, 64, 67, 0.30), 0 6px 10px 4px rgba(60, 64, 67, 0.15);
+		--md-elev-5:	0 4px 4px 0 rgba(60, 64, 67, 0.30), 0 8px 12px 6px rgba(60, 64, 67, 0.15);
+	}
+
+// Base -----------------------------------------------------------------------
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		background: _palette(bg);
+		color: _palette(fg);
+		letter-spacing: 0.00625em;
+	}
+
+	// Accessible focus ring on every interactive surface.
+	a, button, input, select, textarea, .button, [tabindex] {
+		&:focus-visible {
+			outline: 3px solid rgba(_palette(accent1, bg), 0.6);
+			outline-offset: 2px;
+		}
+	}
+
+// Type scale -----------------------------------------------------------------
+
+	h1, h2, h3, h4, h5, h6 {
+		color: _palette(fg-bold);
+		font-family: _font(family);
+		letter-spacing: 0;
+		text-transform: none;
+
+		a {
+			border-bottom: 0;
+		}
+	}
+
+	// Headline styles carry regular weight in M3; titles carry medium.
+	h1 { font-size: 2em;     font-weight: 400; line-height: 1.25; letter-spacing: -0.015em; }
+	h2 { font-size: 1.75em;  font-weight: 400; line-height: 1.28; letter-spacing: -0.01em; }
+	h3 { font-size: 1.375em; font-weight: 400; line-height: 1.33; }
+	h4 { font-size: 1.125em; font-weight: 500; line-height: 1.4; }
+	h5 { font-size: 1em;     font-weight: 500; line-height: 1.5; letter-spacing: 0.009em; }
+	h6 { font-size: 0.875em; font-weight: 500; line-height: 1.43; letter-spacing: 0.007em; }
+
+	p {
+		letter-spacing: 0.0156em;
+		line-height: 1.6;
+	}
+
+	// Section headings get a primary-toned rule, echoing Material's dividers.
+	#main > section > .container > h3 {
+		align-items: center;
+		display: flex;
+		gap: 0.6em;
+		margin-bottom: 1.25em;
+
+		&:after {
+			background: _palette(border);
+			border-radius: _shape(full);
+			content: '';
+			flex: 1;
+			height: 1px;
+		}
+	}
+
+	strong, b {
+		color: _palette(fg-bold);
+		font-weight: 500;
+	}
+
+	a {
+		color: _palette(accent1, bg);
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.2em;
+		transition: color var(--md-dur-short) var(--md-ease);
+
+		&:hover {
+			color: darken(_palette(accent1, bg), 8);
+		}
+	}
+
+	blockquote {
+		background: var(--md-surface-low);
+		border-left: 4px solid _palette(accent1, bg);
+		border-radius: 0 _shape(medium) _shape(medium) 0;
+		font-style: normal;
+		padding: 1em 1.25em;
+	}
+
+	code {
+		background: var(--md-surface-container);
+		border: 0;
+		border-radius: _shape(xsmall);
+		font-family: _font(family-fixed);
+		font-size: 0.9em;
+		padding: 0.15em 0.4em;
+	}
+
+	pre {
+		code {
+			background: var(--md-surface-low);
+			border: 1px solid var(--md-outline-variant);
+			border-radius: _shape(medium);
+			padding: 1em 1.25em;
+		}
+	}
+
+	hr {
+		border-bottom: 1px solid var(--md-outline-variant);
+	}
+
+// Buttons --------------------------------------------------------------------
+// M3 button variants: filled tonal (default), filled (.primary), outlined (.alt).
+
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	.button {
+		background-color: var(--md-secondary-container);
+		border-radius: _shape(full);
+		box-shadow: var(--md-elev-0);
+		color: var(--md-on-secondary-container) !important;
+		font-weight: 500;
+		height: 2.75em;
+		letter-spacing: 0.007em;
+		line-height: 2.75em;
+		padding: 0 1.5em;
+		transition:
+			background-color var(--md-dur-short) var(--md-ease),
+			box-shadow var(--md-dur-short) var(--md-ease),
+			color var(--md-dur-short) var(--md-ease);
+
+		&:hover {
+			background-color: darken(_palette(accent2, container), 5);
+			box-shadow: var(--md-elev-1);
+			color: var(--md-on-secondary-container) !important;
+		}
+
+		&:active {
+			background-color: darken(_palette(accent2, container), 9);
+			box-shadow: var(--md-elev-0);
+		}
+
+		// Filled — the high-emphasis action.
+		&.primary {
+			background-color: _palette(accent1, bg);
+			color: _palette(accent1, fg-bold) !important;
+
+			&:hover {
+				background-color: lighten(_palette(accent1, bg), 4);
+				box-shadow: var(--md-elev-2);
+			}
+
+			&:active {
+				background-color: darken(_palette(accent1, bg), 6);
+				box-shadow: var(--md-elev-1);
+			}
+		}
+
+		// Outlined — the medium-emphasis action.
+		&.alt {
+			background-color: transparent;
+			box-shadow: inset 0 0 0 1px var(--md-outline);
+			color: _palette(accent1, bg) !important;
+
+			&:hover {
+				background-color: rgba(_palette(accent1, bg), 0.08);
+				box-shadow: inset 0 0 0 1px var(--md-outline);
+				color: _palette(accent1, bg) !important;
+			}
+
+			&:active {
+				background-color: rgba(_palette(accent1, bg), 0.12);
+			}
+
+			&.icon:before {
+				color: _palette(accent1, bg);
+			}
+		}
+
+		&.icon {
+			padding-left: 1.25em;
+
+			&:before {
+				margin-right: 0.5em;
+			}
+		}
+
+		&.small  { font-size: 0.8em; }
+		&.large  { font-size: 1.2em; }
+
+		&.disabled,
+		&:disabled {
+			background-color: rgba(_palette(fg-bold), 0.12) !important;
+			box-shadow: none;
+			color: rgba(_palette(fg-bold), 0.38) !important;
+			cursor: default;
+			opacity: 1;
+		}
+	}
+
+// Form -----------------------------------------------------------------------
+// M3 outlined text fields.
+
+	label {
+		color: _palette(fg-bold);
+		font-size: 0.875em;
+		font-weight: 500;
+		letter-spacing: 0.007em;
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select,
+	textarea {
+		background: _palette(bg);
+		border: 1px solid var(--md-outline);
+		border-radius: _shape(xsmall);
+		color: _palette(fg-bold);
+		transition:
+			border-color var(--md-dur-short) var(--md-ease),
+			box-shadow var(--md-dur-short) var(--md-ease);
+
+		&::placeholder {
+			color: _palette(fg-light);
+			opacity: 1;
+		}
+
+		&:hover {
+			border-color: _palette(fg-bold);
+		}
+
+		&:focus {
+			border-color: _palette(accent1, bg);
+			box-shadow: inset 0 0 0 1px _palette(accent1, bg);
+			outline: 0;
+		}
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select {
+		height: 3.25em;
+	}
+
+	textarea {
+		padding: 1em;
+	}
+
+	// Checkbox and radio — M3 selection controls.
+	input[type="checkbox"],
+	input[type="radio"] {
+		& + label {
+			color: _palette(fg);
+			font-size: 0.95em;
+			font-weight: 400;
+
+			&:before {
+				border: 2px solid _palette(fg-light);
+				border-radius: _shape(xsmall);
+				transition:
+					background-color var(--md-dur-short) var(--md-ease),
+					border-color var(--md-dur-short) var(--md-ease);
+			}
+		}
+
+		&:checked + label:before {
+			background: _palette(accent1, bg);
+			border-color: _palette(accent1, bg);
+			color: _palette(accent1, fg-bold);
+		}
+	}
+
+	input[type="radio"] + label:before {
+		border-radius: _shape(full);
+	}
+
+// Cards ----------------------------------------------------------------------
+// .features articles become M3 elevated cards.
+
+	.features {
+		article {
+			background: _palette(bg);
+			border-radius: _shape(large);
+			border-top: 0 !important;
+			box-shadow: var(--md-elev-1);
+			margin-bottom: 1.5em;
+			padding: 1.25em !important;
+			transition:
+				box-shadow var(--md-dur-medium) var(--md-ease),
+				transform var(--md-dur-medium) var(--md-ease);
+
+			&:hover {
+				box-shadow: var(--md-elev-3);
+				transform: translateY(-2px);
+			}
+
+			.image {
+				img {
+					border-radius: _shape(medium);
+				}
+			}
+
+			.inner {
+				h4 {
+					margin-bottom: 0.4em;
+				}
+
+				p {
+					color: _palette(fg);
+					font-size: 0.95em;
+				}
+			}
+		}
+	}
+
+// Feature icons --------------------------------------------------------------
+// Tonal icon containers, per M3.
+
+	ul.feature-icons {
+		li {
+			line-height: 1.6;
+			padding-top: 0.5em;
+
+			&:before {
+				background: var(--md-primary-container);
+				border-radius: _shape(large);
+				box-shadow: none;
+				color: var(--md-on-primary-container);
+				height: 2.75em;
+				line-height: 2.75em;
+				width: 2.75em;
+			}
+		}
+	}
+
+// Icon buttons ---------------------------------------------------------------
+// Social links in the drawer footer become circular M3 icon buttons.
+
+	ul.icons {
+		li {
+			padding: 0 0.25em;
+
+			.icon {
+				align-items: center;
+				border-radius: _shape(full);
+				display: inline-flex;
+				height: 2.5em;
+				justify-content: center;
+				transition: background-color var(--md-dur-short) var(--md-ease);
+				width: 2.5em;
+
+				&:before {
+					font-size: 1.1em;
+				}
+
+				&:hover {
+					background: rgba(255, 255, 255, 0.16);
+				}
+
+				&:active {
+					background: rgba(255, 255, 255, 0.24);
+				}
+			}
+		}
+	}
+
+	// Outside the drawer the surface is light, so invert the state layer.
+	#main ul.icons li .icon {
+		&:hover  { background: rgba(_palette(fg-bold), 0.08); }
+		&:active { background: rgba(_palette(fg-bold), 0.12); }
+	}
+
+// Table ----------------------------------------------------------------------
+// M3 data table.
+
+	table {
+		tbody {
+			tr {
+				border-bottom: 1px solid var(--md-outline-variant);
+				border-left: 0;
+				border-right: 0;
+				transition: background-color var(--md-dur-short) var(--md-ease);
+
+				&:nth-child(2n + 1) {
+					background-color: transparent;
+				}
+
+				&:hover {
+					background-color: rgba(_palette(accent1, bg), 0.04);
+				}
+			}
+		}
+
+		th {
+			color: _palette(fg-bold);
+			font-size: 0.875em;
+			font-weight: 500;
+			letter-spacing: 0.007em;
+		}
+
+		thead {
+			border-bottom: 1px solid var(--md-outline);
+		}
+
+		tfoot {
+			border-top: 1px solid var(--md-outline);
+		}
+
+		&.alt {
+			tbody tr td {
+				border-color: var(--md-outline-variant);
+			}
+		}
+	}
+
+	.table-wrapper {
+		border-radius: _shape(medium);
+	}
+
+// Navigation drawer ----------------------------------------------------------
+
+	#header {
+		background: _palette(header, bg);
+		box-shadow: var(--md-elev-2);
+
+		> header {
+			.avatar {
+				img {
+					border-radius: _shape(full);
+					box-shadow: var(--md-elev-2);
+				}
+			}
+
+			h1 {
+				font-size: 1.5em;
+				font-weight: 500;
+				letter-spacing: 0;
+			}
+
+			p {
+				font-size: 0.9em;
+				font-style: normal;
+				letter-spacing: 0.01em;
+				opacity: 0.9;
+			}
+		}
+
+		// M3 navigation drawer items: pill-shaped, with an active indicator.
+		> nav {
+			ul {
+				padding: 0 0.75em;
+
+				li {
+					border-top: 0 !important;
+					margin: 0.25em 0;
+
+					a {
+						border-radius: _shape(full);
+						font-size: 0.9em;
+						font-weight: 500;
+						letter-spacing: 0.01em;
+						padding: 0.8em 1.5em;
+						transition:
+							background-color var(--md-dur-short) var(--md-ease),
+							color var(--md-dur-short) var(--md-ease);
+
+						&:hover {
+							background: rgba(255, 255, 255, 0.14);
+						}
+
+						&.active {
+							background: _palette(bg);
+							box-shadow: var(--md-elev-1);
+							color: _palette(header, bg) !important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Mobile top app bar.
+	#titleBar {
+		background: _palette(header, bg);
+		box-shadow: var(--md-elev-2);
+
+		.title {
+			font-weight: 500;
+			letter-spacing: 0.01em;
+		}
+
+		.toggle {
+			&:before {
+				background: transparent;
+				color: _palette(header, fg-bold);
+			}
+
+			&:hover:before {
+				background: rgba(255, 255, 255, 0.14);
+			}
+		}
+	}
+
+// Main surface ---------------------------------------------------------------
+
+	#main {
+		> section {
+			border-top: 1px solid var(--md-outline-variant);
+		}
+	}
+
+	#footer {
+		background: var(--md-surface-low);
+		border-top: 1px solid var(--md-outline-variant);
+
+		.copyright {
+			font-size: 0.85em;
+		}
+	}
+
+	.image {
+		&.main {
+			img {
+				border-radius: 0;
+			}
+		}
+
+		&.fit,
+		&.left,
+		&.right {
+			img {
+				border-radius: _shape(medium);
+			}
+		}
+	}
+
+// Responsive corrections -----------------------------------------------------
+
+	@include breakpoint('<=medium') {
+		#main > section {
+			border-top: 0;
+		}
+	}
+
+	@include breakpoint('<=small') {
+		.features article {
+			padding: 1em !important;
+		}
+
+		#main > section > .container > h3 {
+			margin-bottom: 1em;
+		}
+	}
+
+	@include breakpoint('<=xsmall') {
+		input[type="submit"],
+		input[type="reset"],
+		input[type="button"],
+		.button {
+			padding: 0;
+		}
+	}
+
+// Motion preferences ---------------------------------------------------------
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+
+		*,
+		*:before,
+		*:after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			scroll-behavior: auto !important;
+			transition-duration: 0.01ms !important;
+		}
+
+		.features article:hover {
+			transform: none;
+		}
+	}
