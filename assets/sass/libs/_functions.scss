@@ -88,3 +88,17 @@
 @function _size($keys...) {
 	@return val($size, $keys...);
 }
+
+/// Gets a shape (corner radius) value.
+/// @param {string} $keys Key(s).
+/// @return {string} Value.
+@function _shape($keys...) {
+	@return val($shape, $keys...);
+}
+
+/// Gets a Google product accent colour.
+/// @param {string} $keys Key(s).
+/// @return {string} Value.
+@function _google($keys...) {
+	@return val($google, $keys...);
+}

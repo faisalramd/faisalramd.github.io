@@ -1,0 +1,10 @@
+///
+/// Stylesheet entry point.
+///
+/// Loads the base template, then the Material Design layer on top. The
+/// Material layer must come last so it settles the cascade — keeping it in a
+/// separate file leaves main.scss untouched and upgradeable.
+///
+
+@import 'main';
+@import 'libs/material';
