@@ -1,0 +1,53 @@
+///
+/// Daily wallpaper.
+///
+/// Paints Bing's picture of the day over the banner. The image URL is not
+/// fetched in the browser — Bing's HPImageArchive endpoint sends no
+/// Access-Control-Allow-Origin header, so a fetch() from the page is blocked.
+/// Instead .github/workflows/bing-wallpaper.yml resolves it daily and writes
+/// assets/css/wallpaper.css, which defines --bing-wallpaper and
+/// --bing-copyright.
+///
+/// Both rules below read their custom property with no fallback, which is
+/// deliberate. When wallpaper.css has not defined them the declaration is
+/// invalid at computed-value time and the property drops to its initial
+/// value: for :before that means no background image, so the underlying
+/// banner.jpg shows through, and for :after it means `content: normal`, which
+/// generates no box at all. The banner therefore degrades cleanly if the
+/// workflow ever fails or is disabled.
+///
+
+	.image.main {
+		overflow: hidden;
+		position: relative;
+
+		&:before {
+			background-image: var(--bing-wallpaper);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			content: '';
+			inset: 0;
+			position: absolute;
+			z-index: 1;
+		}
+
+		// Photo credit, taken from Bing's own caption.
+		&:after {
+			background: rgba(0, 0, 0, 0.55);
+			border-radius: _shape(small);
+			bottom: 0.75em;
+			color: #ffffff;
+			content: var(--bing-copyright);
+			font-size: 0.7em;
+			left: 0.75em;
+			line-height: 1.4;
+			max-width: calc(100% - 1.5em);
+			overflow: hidden;
+			padding: 0.35em 0.7em;
+			position: absolute;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			z-index: 2;
+		}
+	}

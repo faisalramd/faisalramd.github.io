@@ -1,0 +1,40 @@
+name: Bing wallpaper
+
+# Refreshes the banner image from Bing's picture of the day.
+#
+# Note: GitHub disables scheduled workflows after 60 days without repository
+# activity. If the wallpaper stops changing, re-enable this from the Actions
+# tab or push any commit.
+on:
+  schedule:
+    # Bing rotates around 00:00 UTC; run a little after.
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Fetch today's image
+        run: node scripts/bing-wallpaper.js
+
+      - name: Commit
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/css/wallpaper.css
+          if git diff --staged --quiet; then
+            echo 'Wallpaper unchanged.'
+          else
+            git commit -m 'Update Bing wallpaper'
+            git push
+          fi
