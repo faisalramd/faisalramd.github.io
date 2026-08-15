@@ -1,0 +1,38 @@
+///
+/// Font Awesome 7 compatibility.
+///
+/// The template marks icons up with its own `.icon` class alongside a `fa-*`
+/// class, and sets the font family itself through the `icon` mixin. It leans
+/// on Font Awesome for one thing only: the glyph.
+///
+/// Font Awesome 5 published that glyph directly, so the markup worked:
+///
+///     .fa-envelope:before { content: "\f0e0"; }
+///
+/// Font Awesome 6 and 7 moved it behind a custom property, and emit the
+/// `content` declaration only for their own base classes:
+///
+///     .fa-envelope { --fa: "\f0e0"; }
+///     :is(.fas, .far, .fab, .fa-solid, .fa-brands, .fa):before {
+///         content: var(--fa) / "";
+///     }
+///
+/// Because the markup carries `.icon` rather than `.fas` or `.fab`, nothing
+/// emits the glyph and every icon renders as an empty box. This restores it
+/// for the template's own convention.
+///
+/// The `/ ""` gives the glyph empty alternative text, so assistive technology
+/// does not announce the private-use character — the visible label or the
+/// adjacent `.label` span carries the meaning instead. The @supports block
+/// covers browsers that do not accept alt text in `content`.
+///
+
+	.icon:before {
+		content: #{'var(--fa) / ""'};
+	}
+
+	@supports not (content: #{'"" / ""'}) {
+		.icon:before {
+			content: var(--fa);
+		}
+	}
