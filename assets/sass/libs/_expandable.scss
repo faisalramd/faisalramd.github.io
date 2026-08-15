@@ -1,0 +1,24 @@
+///
+/// Expandable lists.
+///
+/// The collapsing itself is done in assets/js/accomplishments.js by setting
+/// the `hidden` attribute, so the item count lives in one place rather than
+/// being duplicated as an :nth-child threshold here.
+///
+
+	// A component rule that sets `display` would otherwise beat the user-agent
+	// rule for [hidden], leaving "hidden" items visible.
+	[hidden] {
+		display: none !important;
+	}
+
+	// <button class="button"> does not inherit the page font the way
+	// <a class="button"> does — browsers apply their own control font.
+	button.button {
+		font-family: _font(family);
+		font-size: 1em;
+	}
+
+	#accomplishments-actions {
+		margin-top: 0.5em;
+	}
