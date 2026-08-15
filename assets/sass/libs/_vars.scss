@@ -3,6 +3,10 @@
 // declaring it in the entry point.
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Roboto+Mono:wght@400&display=swap");
 
+// Bing's picture of the day, refreshed daily by .github/workflows/bing-wallpaper.yml.
+// Defines --bing-wallpaper and --bing-copyright; absent until the first run.
+@import url("wallpaper.css");
+
 // Design tokens — Material Design 3 (Google)
 // Colour roles follow the M3 scheme, keyed to Google's product palette
 // (M3 blue primary, Grey 900/700 on-surface, Grey 300 outline).
