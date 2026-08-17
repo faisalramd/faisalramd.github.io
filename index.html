@@ -398,7 +398,7 @@ model-viewer{position:absolute;left:3%;right:3%;top:3%;bottom:14%;width:auto;hei
 
 <!-- ═════════ A-02 STACK ═════════ -->
 <section id="one" class="wrap">
-  <div class="shead rv"><span class="mono code">A-02</span><h2>The stack</h2><span class="mono scale">Section · load-bearing to surface</span></div>
+  <div class="shead rv"><span class="mono code">A-02</span><h2>The stack</h2></div>
 
   <div class="stack" id="stack">
     <div class="layer" style="--i:0">
@@ -504,7 +504,7 @@ model-viewer{position:absolute;left:3%;right:3%;top:3%;bottom:14%;width:auto;hei
 
 <!-- ═════════ A-05 TITLE BLOCK ═════════ -->
 <section id="four" class="wrap">
-  <div class="shead rv"><span class="mono code">A-05</span><h2>Contact</h2><span class="mono scale">Title block</span></div>
+  <div class="shead rv"><span class="mono code">A-05</span><h2>Contact</h2></div>
   <div class="disp out" id="outro">
     <span class="mask"><span style="--d:0ms">Let's draw up</span></span>
     <span class="mask"><span style="--d:130ms">something</span></span>
@@ -525,25 +525,8 @@ model-viewer{position:absolute;left:3%;right:3%;top:3%;bottom:14%;width:auto;hei
   <p class="rv muted" style="margin-top:20px;max-width:48ch">Open to Android engineering roles and collaboration. Email is the quickest way to reach me.</p>
 </section>
 
-<!-- ═════════ MOTION NOTES ═════════ -->
-<section class="wrap" style="padding-top:0">
-  <div class="shead rv"><span class="mono code">M-01</span><h2>Motion notes</h2><span class="mono scale">Blueprint vocabulary</span></div>
-  <div class="notes">
-    <div class="note rv"><span class="mono" style="color:var(--amber)">01</span><b>Draw-on strokes</b><code>pathLength="1" + stroke-dashoffset 1→0</code><p>The annotation frame renders itself — corners, then dimension line, then timeline. <code>pathLength</code> normalises every path so one delay scale governs all of them.</p></div>
-    <div class="note rv" style="--i:1"><span class="mono" style="color:var(--amber)">02</span><b>Turntable</b><code>auto-rotate + rotation-per-second</code><p>Continuous slow yaw on the model, with a dashed orbit ellipse beneath it so the rotation reads even at a glance. Drag to take over.</p></div>
-    <div class="note rv" style="--i:2"><span class="mono" style="color:var(--amber)">02b</span><b>Dimension lines</b><code>scaleX(0→1) from transform-origin: 0</code><p>The measure extends, then the figure counts up to meet it — the annotation arrives after the thing it measures.</p></div>
-    <div class="note rv" style="--i:2"><span class="mono" style="color:var(--amber)">03</span><b>Layer stack</b><code>translateY(38px) + stagger 130ms</code><p>Floors settle in sequence rather than together. Sequence is what makes a stack read as a stack.</p></div>
-    <div class="note rv" style="--i:3"><span class="mono" style="color:var(--amber)">04</span><b>Flowing connectors</b><code>stroke-dasharray: 2 9 + dashoffset loop</code><p>Dots travel up the connectors, showing direction between layers. One property, no JS.</p></div>
-    <div class="note rv"><span class="mono" style="color:var(--amber)">05</span><b>Callout expansion</b><code>grid-template-rows: 0fr → 1fr</code><p>Details enlarge in place, like a detail bubble on a drawing. No fixed heights, no measuring.</p></div>
-    <div class="note rv" style="--i:1"><span class="mono" style="color:var(--amber)">06</span><b>Reprint wipe</b><code>clip-path: inset(0 100% 0 0 → 0)</code><p>Cyanotype ↔ whiteprint sweeps across like a sheet coming off the plotter.</p></div>
-    <div class="note rv" style="--i:2"><span class="mono" style="color:var(--amber)">07</span><b>Schedule rows</b><code>translateX(-14px), stagger 45ms</code><p>Table rows rule in left to right, the way a schedule gets filled out.</p></div>
-    <div class="note rv" style="--i:3"><span class="mono" style="color:var(--amber)">08</span><b>Emphasized easing</b><code>cubic-bezier(.2,0,0,1)</code><p>Fast out, long settle — used for anything covering distance. Linear only for the looping flow.</p></div>
-  </div>
-</section>
-
 <footer class="wrap mono">
   <span>© 2026 Faisal Ramdani</span>
-  <span>Sheet 1 of 1 · NTS</span>
 </footer>
 
 <script type="module" src="https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
